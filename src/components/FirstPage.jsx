@@ -3,9 +3,10 @@ import { useLocation } from 'react-router-dom'
 import PostsList from './PostsList';
 import useSelectPosts from "../hooks/useSelectPosts"
 
-const initialLimit = 7;
-const initialIndex = 0;
+
 export default function FirstPage() {
+  const initialLimit = 7;
+const initialIndex = 0;
   let location = useLocation();
   let [locationBoolean, setlocationBoolean] = useState(location.pathname);
   const [limit, setLimit] = useState(initialLimit);

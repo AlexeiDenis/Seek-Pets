@@ -5,12 +5,20 @@ import { useEffect,useState } from "react";
 import { authContext } from "../App";
 import { useContext } from "react";
 export default function Header() {
-let [ses, setSes]= useState(null)
-const { user } = useContext(authContext) || {};
-  
-  console.log(user)
+
+ const { user } = useContext(authContext);
+console.log("din header",user)
+// useEffect(()=>{
+// async function wait(){
+//   const { data, error } = await supabase.auth.getSession();
+//   setSes(data.session.user.aud)
+// }
+// wait();
+// },[])
+
+
   return (
-    <div><p>header</p>
+    <div><p>{user?user:"not authenticated"}</p>
       <NavLink to="/" style={({ isActive }) => {
         return {
           pointerEvents: isActive ? "none" : "auto"

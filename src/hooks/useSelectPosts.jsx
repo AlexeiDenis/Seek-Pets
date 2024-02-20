@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import supabase from "./useSupabase";
 
 export default function useSelectPosts(status,index, limit) {
@@ -9,7 +9,7 @@ export default function useSelectPosts(status,index, limit) {
         error: null,
     });
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const indexToSend = index * limit;
         const limitToSend = (index + 1) * limit - 1;
         let ignore = true;
