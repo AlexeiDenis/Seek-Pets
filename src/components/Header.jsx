@@ -1,24 +1,14 @@
 import { NavLink } from "react-router-dom"
 import useLogout from "../hooks/useLogout";
-import supabase from "../hooks/useSupabase";
-import { useEffect,useState } from "react";
-import { authContext } from "../App";
 import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 export default function Header() {
 
- const { user } = useContext(authContext);
-console.log("din header",user)
-// useEffect(()=>{
-// async function wait(){
-//   const { data, error } = await supabase.auth.getSession();
-//   setSes(data.session.user.aud)
-// }
-// wait();
-// },[])
+ const { user } = useContext(AuthContext);
 
 
   return (
-    <div><p>{user?user:"not authenticated"}</p>
+    <div>
       <NavLink to="/" style={({ isActive }) => {
         return {
           pointerEvents: isActive ? "none" : "auto"
@@ -37,6 +27,12 @@ console.log("din header",user)
           pointerEvents: isActive ? "none" : "auto"
         };
       }}>Lost Page</NavLink>
+      {user? <NavLink to="/create" style={({ isActive }) => {
+        return {
+          color: isActive ? "red" : "white",
+          pointerEvents: isActive ? "none" : "auto"
+        };
+      }}>Report pet</NavLink>:null}
        { user?<button onClick={useLogout}>logout</button>:<NavLink to="/login" style={({ isActive }) => {
         return {
           color: isActive ? "red" : "white",
